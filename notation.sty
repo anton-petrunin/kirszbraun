@@ -289,20 +289,6 @@
 \def\comp{\mathop{\rm Comp}\nolimits}
 \def\twotwo{\hbox{$\triangleleft\hskip-0.1em\triangleright$}}
 
-\newcommand*\toshadist[4][{}]%
-{\ifthenelse{\isempty{#1}}%
-{\ifthenelse{\isempty{#4}}%
-{{#2}{{\ddagger}}{#3}}%
-{({#2}{{\ddagger}}{#3})_{#4}}}%
-{({#2}{{\ddagger}}{#3})_{#4}^{#1}}}%
-
-\newcommand\toshayetdist[4][{}]%
-{\ifthenelse{\isempty{#1}}%
-{\ifthenelse{\isempty{#4}}%
-{{#2}{{\dagger}}{#3}}%
-{({#2}{{\dagger}}{#3})_{#4}}}%
-{({#2}{{\dagger}}{#3})_{#4}^{#1}}}%
-
 %\newcommand*\sbadist[4][{}]%
 %{\ifthenelse{\isempty{#3}}%
 %{|{#2}-{\mathrm{id}}|^{#1}_{#4}}%
@@ -313,7 +299,7 @@
 %{\settowidth{\zhaba}{${#1}{#2}$}%
 %\ifthenelse{\lengthtest{\zhaba<1.7em}}
 {\ifthenelse{\isempty{#2}}%
-{|{\scriptstyle{*}}{\scriptstyle{*}}|}%
+{|{\scriptstyle{*}}-{\scriptstyle{*}}|}%
 {\ifthenelse{\isempty{#3}}%
 {|{#2}-{\scriptstyle{*}}|^{#1}_{#4}}%
 {|{#2}-{#3}|^{#1}_{#4}}}%
@@ -343,8 +329,4 @@
 %}%
 %}%
 
-\IfFileExists{../tosha-book-switch}%
-{\def\dist{\toshadist}%
-\def\yetdist{\toshayetdist}}%
-{\def\dist{\sbadist}%
-\def\yetdist{\sbayetdist}}%
+\def\dist{\sbadist}
