@@ -1,0 +1,335 @@
+\documentclass[oneside,a4paper]{article}
+\usepackage{akp1}
+\usepackage{hyper}
+\usepackage{letters}
+\usepackage{notation}
+\usepackage{hyphenation}
+\usepackage{envmnt}
+
+\newcommand*\chapter[1]{}
+\def\claim#1{%
+\par%
+\medskip%
+\noindent%
+\refstepcounter{thm}%
+\hbox{\bf\boldmath \arabic{section}.\arabic{thm}. #1.}
+\it\ %\ignorespaces
+}
+\def\endclaim{
+\par
+\medskip}
+
+\begin{document}
+\title{Alexandrov meets Kirszbraun}
+\author{S. Alexander, V. Kapovitch, A. Petrunin}
+\date{}
+\maketitle
+
+\begin{abstract}
+We give a simplified proof of the generalized Kirszbraun theorem for Alexandrov spaces,
+which is due to Lang and Schroeder.
+We also discuss related questions, both solved and open. 
+\end{abstract}
+
+\section{Introduction}
+
+Kirszbraun's theorem states that any \emph{short map} (i.e. 1-Lipschitz map) from a subset of Euclidean space to another in Euclidean space can be extended as a short map to the whole space.
+
+This theorem was proved first by Kirszbraun in \cite{kirszbraun}.  Later it was reproved by Valentine in \cite{valentine-sphere} and \cite{valentine-kirszbraun}, where he also generalized it to pairs of Hilbert spaces of arbitrary dimension 
+as well as pairs of spheres of the same dimension 
+and pairs of hyperbolic spaces with the same curvature.
+%S: I add a sentance:
+J.~Isbel in \cite{isbell} studied target spaces that satisfy the above condition for any source space.
+
+Valentine was also interested in pairs of metric spaces,
+say $\spc{U}$ and $\spc{L}$,
+which satisfy the above property, namely, given a subset $Q\subset\spc{U}$, 
+any short map $Q\to\spc{L}$ 
+can be extended to a short map $\spc{U}\to \spc{L}$.
+It turns out that this property has a lot in common with the definition of Alexandrov spaces
+(see theorems \ref{thm:kirsz+}, \ref{thm:kirsz-def} and \ref{thm:cba-kirsz-def}).
+Surprisingly, this relationship was first discovered only in the 1990's;
+it was first published by Lang and Schroeder in \cite{lang-schroeder}.
+(The third author of this paper came to similar conclusions a couple of years earlier, and told it to the first author, but did not publish the result.)%???I am not sure we need to include this claim, feel free to remove it:) 
+
+We slightly improve the results of Lang and Schroeder.
+Our proof is based on the barycentric maps introduced by Kleiner in \cite{kleiner}.
+The material of this paper will be included in the book on Alexandrov geometry that we are currently writing, but it seems useful to publish it now.
+
+
+ \parbf{Structure of the paper.}
+We introduce notations in Section~\ref{sec:prelim}.
+In section \ref{sec:4pt} we give altternative definitions of Alexandrov spaces 
+based on the Kirszbraun property for 4-point sets.
+The generalized Kirszbraun theorem is proved in Section~\ref{sec:kirszbraun}.
+In the sections \ref{sec:1+n} and \ref{sec:2n+2} we describe some comparison properties of finite subsets of Alexandrov spaces.
+In Section~\ref{sec:kirszbraun:open} we discuss related open problems.
+Appendices~\ref{sec:baricentric} and \ref{sec:helly} describe Kleiner's barycentric map and an analog of Helly's theorem for Alexandrov spaces.
+
+
+\parbf{Historical remark. }%???Should we talk about that, A.???
+ Not much is known about the author of this remarkable theorem.
+The theorem appears in Kirszbraun's master's thesis which he defended in Warsaw University in 1930.
+His name is Moj\.{z}esz and his second name is likely to be Dawid but is uncertain.
+He was born either in 1903 or 1904 and died in a ghetto in 1942.
+After university, 
+he worked  as an actuary in an insurance company; 
+\cite{kirszbraun} seems to be his only publication in mathematics. 
+
+\parbf{Acknowledgment.} 
+We want to thank S.~Ivanov, N.~Lebedeva and A.~Lytchak 
+for useful comments
+and pointing out misprints.
+Also we want to thank L.~Grabowski for bringing to our attention the entry about Kirszbraun in the Polish Biographical Dictionary.
+
+\section{Preliminaries}\label{sec:prelim}
+
+In this section we mainly introduce our notations.
+
+\parbf{Metric spaces.} Let $\spc{X}$ be a metric space.  The distance between two points $x,y\in\spc{X}$ will be denoted as $\dist{x}{y}{}$ or $\dist{x}{y}{\spc{X}}$.
+
+Given $R\in[0,\infty]$ and $x\in \spc{X}$, the sets
+\begin{align*}
+\oBall(x,R)&=\{y\in \spc{X}\mid \dist{x}{y}{}<R\},
+\\
+\cBall[x,R]&=\{y\in \spc{X}\mid \dist{x}{y}{}\le R\}.
+\end{align*}
+are called respectively the \emph{open} and \emph{closed  ball} of radius $R$ with center at $x$.
+
+A metric space $\spc{X}$ is called 
+\emph{intrinsic}
+if for any $\eps>0$ and any two points $x,y\in \spc{X}$ with $\dist{x}{y}{}<\infty$ there is an $\eps$-midpoint for $x$ and $y$;
+i.e. there is a point $z\in \spc{X}$ such that $\dist{x}{z}{},\dist{z}{y}{}<\tfrac{1}{2}\cdot \dist[{{}}]{x}{y}{}+\eps$.
+
+
+\parbf{Model space.}
+$\Lob{m}{\kappa}$ denotes $m$-dimensional model space with curvature $\kappa$; 
+i.e. the simply connected $m$-dimensional Riemannian manifold with constant sectional curvature $\kappa$.
+
+Set $\varpi\kappa=\diam\Lob2\kappa$\index{$\varpi\kappa$}, so 
+$\varpi\kappa=\infty$ if $\kappa\le0$ and $\varpi\kappa=\pi/\sqrt{\kappa}$ if $\kappa>0$.
+(The letter $\varpi{}$ is a glyph variant of lower case $\pi$,
+but is usually pronounced as \emph{pomega}.)
+
+\parbf{Ghost of Euclid.} Let $\spc{X}$ be a metric space 
+and $\II$ be a real interval.
+A globally isometric map $\gamma\:\II\to \spc{X}$ will be called a \emph{unitspeed geodesic}. 
+A unitspeed geodesic between $p$ and $q$ will be denoted by $\geod_{[p q]}$.
+We consider $\geod_{[p q]}$ with parametrization starting at $p$; 
+i.e. $\geod_{[p q]}(0)=p$ and $\geod_{[p q]}(\dist{p}{q}{})=q$.
+The image of $\geod_{[p q]}$ will be denoted by $[p q]$ and called a \emph{geodesic}\index{geodesic}.
+
+Also we will use the following short-cut notation:
+\begin{align*}
+\l] p q \r[&=[p q]\backslash\{p,q\},
+&
+\l] p q \r]&=[p q]\backslash\{p\},
+&
+\l[ p q \r[&=[p q]\backslash\{q\}.
+\end{align*}
+
+A metric space $\spc{X}$ is called 
+\emph{geodesic}
+if for any two points $x,y\in \spc{X}$ there is a geodesic $[x y]$ in $\spc{X}$.
+
+Given a geodesic $[p q]$, we denote by $\dir{p}{q}$ its direction at $p$.
+We may think of $\dir{p}{q}$ as belonging to the space of directions $\Sigma_p$ at $p$,
+which in turn can be identified with the unit sphere in the tangent space $\T_p$ at $p$.
+Further we set $\ddir{p}{q}=\dist[{{}}]{p}{q}{}\cdot\dir{p}{q}$;
+it is a \emph{tangent vector} at $p$, that is, an element of $\T_p$.
+
+For a triple of points $p,q,r\in \spc{X}$, a choice of triple of geodesics $([q r], [r p], [p q])$ will be called a \emph{triangle} and we will use the notation 
+$\trig p q r=([q r], [r p], [p q])$.
+If $p$ is distinct from $x$ and $y$, a  pair of geodesics $([p x],[p y])$ will be called a \emph{hinge}\index{hinge}, and  denoted by 
+$\hinge p x y=([p x],[p y])$.
+
+\parbf{Functions.}
+A locally Lipschitz function $f$ on a metric space $\spc{X}$ is called $\lambda$-convex ($\lambda$-concave)
+if for any geodesic $\geod_{[p q]}$ in $\spc{X}$ the real-to-real function 
+$$t\mapsto f\circ\geod_{[p q]}(t)-\tfrac\lambda2\cdot t^2$$
+is convex (respectively concave).
+In this case we write $f''\ge \lambda$ (respectively $f''\le \lambda$).
+
+A function $f$ is called \emph{strongly convex} (\emph{strongly concave})
+if $f''\ge \delta$ (respectively $f''\le -\delta$) for some $\delta>0$.
+
+
+
+
+\parbf{Model angles and triangles.} 
+Let $\spc{X}$ be a metric space, 
+$p,q,r\in \spc{X}$ 
+and $\kappa\in\RR$. 
+Let us define a \emph{model triangle} $\trig{\~p}{\~q}{\~r}$ 
+(briefly, 
+$\trig{\~p}{\~q}{\~r}=\modtrig\kappa(p q r)$) to be a triangle in the model plane $\Lob2\kappa$ such that
+$$\dist{\~p}{\~q}{}=\dist{p}{q}{},
+\ \ \dist{\~q}{\~r}{}=\dist{q}{r}{},
+\ \ \dist{\~r}{\~p}{}=\dist{r}{p}{}.$$
+If $\kappa\le 0$, the model triangle is said to be defined, since such a triangle always exists and is unique up to an isometry of $\Lob2\kappa$.
+If $\kappa>0$, the model triangle is said to be defined if in addition
+$$\dist{p}{q}{}+\dist{q}{r}{}+\dist{r}{p}{}< 2\cdot\varpi\kappa.$$
+In this case the triangle also exists and is unique up to an isometry of $\Lob2\kappa$.
+
+If for  $p,q,r\in \spc{X}$, the model triangle 
+$\trig{\~p}{\~q}{\~r}=\modtrig\kappa(p q r)$ is defined 
+and $\dist{p}{q}{},\dist{p}{r}{}>0$, then the  angle measure of 
+$\trig{\~p}{\~q}{\~r}$ at $\~p$ will be called the \emph{model angle} of the triple $p$, $q$, $r$, and will be denoted by
+$\angk\kappa p q r$.
+
+\parbf{Curvature bounded below.}
+We will denote by $\CBB{}{\kappa}$, complete intrinsic spaces  $\spc{L}$ with curvature $\ge\kappa$ in the sense of Alexandrov.
+Specifically,  $\spc{L}\in \CBB{}{\kappa}$ if for any quadruple of points $p,x^1,x^2,x^3\in \spc{U}$ , we have
+$$\angk\kappa p{x^1}{x^2}
++\angk\kappa p{x^2}{x^3}
++\angk\kappa p{x^3}{x^1}\le 2\cdot\pi.\eqlbl{Yup-kappa}$$
+or at least one of the model angles $\angk\kappa p{x^i}{x^j}$ is not defined.
+
+Condition \ref{Yup-kappa} will be called \emph{(1+3)-point comparison}.
+
+According to Plaut's theorem \cite[Th. 27]{plaut:survey},
+any space $\spc{L}\in \CBB{}{}$ is $G_\delta$-geodesic; 
+that is, for any point $p\in \spc{L}$ there is a dense $G_\delta$-set $W_p\subset\spc{L}$ such that for any $q\in W_p$ there is a geodesic $[p q]$.
+
+We will use two more equivalent definitions of $\CBB{}{}$ spaces (see \cite{AKP}).
+Namely, a complete $G_\delta$-geodesic space is in $\CBB{}{}$ 
+if and only if it satisfies either of following conditions: 
+\begin{enumerate}
+
+\item\label{POS-CBB-ref} (point-on-side comparison)
+For any geodesic $[x y]$ and $z\in \l]x y\r[$, we have
+$$\angk\kappa x p y\le\angk\kappa x p z; \eqlbl{POS-CBB}$$
+or, equivalently, 
+$$\dist{\~p}{\~z}{}\le \dist{p}{z}{},$$
+where $\trig{\~p}{\~x}{\~y}=\modtrig\kappa(p x y)$, $\~z\in\l] \~x\~y\r[$, $\dist{\~x}{\~z}{}=\dist{x}{z}{}$.
+
+\item (hinge comparison)
+For any hinge $\hinge x p y$, the angle 
+$\mangle\hinge x p y$ is defined and 
+$$\mangle\hinge x p y\ge\angk\kappa x p y.$$
+Moreover, if $z\in\l]x y\r[$, $z\not=p$ then for any two hinges $\hinge z p y$ and $\hinge z p x$ with common side $[z p]$
+$$\mangle\hinge z p y + \mangle\hinge z p x\le\pi.$$
+\end{enumerate}
+
+We also use the following standard result in Alexandrov geometry, 
+which follows from the discussion in the survey of Plaut \cite[8.2]{plaut:survey}.
+
+\begin{thm}{Theorem}\label{thm:cbb-lin-part}
+Let $\spc{L}\in \CBB{}{}$.
+Given an array of points $(x^1,x^2\dots,x^n)$ in $\spc{L}$,
+ there is a dense $G_\delta$-set $W\subset\spc{L}$ such that
+for any $p\in W$, all the directions $\dir{p}{x^i}$ lie in 
+an isometric copy of a unit sphere in $\Sigma_p$.
+(Or, equivaletntly, all the vectors $\ddir{p}{x^i}$ lie in 
+a subcone of the tangent space $\T_p$ which is isometric to Euclidean space.)
+\end{thm}
+
+\parbf{Curvature bounded above.}
+We will denote by $\Cat{}{\kappa}$ 
+the class of metric spaces $\spc{U}$ in which any two points at distance $<\varpi\kappa$ are joined by a geodesic, 
+%(we say $\spc{U}$ is  \emph{geodesic at distance $<\varpi\kappa$})
+and which have  curvature $\le\kappa$ in the following global sense of Alexandrov:  namely, for any quadruple of points $p^1,p^2,x^1,x^2\in \spc{U}$, we have
+$$
+ \angk{\kappa}{p^1}{x^1}{x^2} 
+\le 
+\angk{\kappa}{p^1}{p^2}{x^1}+\angk{\kappa}{p^1}{p^2}{x^2},
+\ \t{or}\ 
+\angk{\kappa} {p^2}{x^1}{x^2}\le \angk{\kappa} {p^2}{p^1}{x^1} + \angk{\kappa} {p^2}{p^1}{x^2},
+\eqlbl{gokova:eq:2+2}$$
+ or
+one of the six model angles above 
+is undefined.
+
+The condition \ref{gokova:eq:2+2} will be called \emph{(2+2)-point comparison} (or \emph{(2+2)-point $\kappa$-comparison} 
+if a confusion may arise).  
+
+We denote the complete $\Cat{}{\kappa}$ spaces by $\cCat{}{\kappa}$. 
+
+The following lemma is a direct consequence of the definition:
+
+\begin{thm}{Lemma}\label{lem:cat-complete} 
+Any complete intrinsic %S:length>intrinsic
+ space $\spc{U}$  in which every quadruple $p^1,p^2,x^1,x^2$ satisfies 
+the (2+2)-point $\kappa$-%S:it is defined now
+comparison %\ref{gokova:eq:2+2} 
+is   a $\cCat{}{\kappa}$ space (that is, any  two points at distance $<\varpi\kappa$ are  joined by a geodesic).  
+
+In particular,  the completion of a 
+$\Cat{}{\kappa}$ space again lies in $\Cat{}{\kappa}$.
+\end{thm}
+
+%\parbf{Remark.} For curvature bounded below, we find that $\CBB{}{\kappa}$ spaces are the appropriate focus.  For curvature bounded above, we consider $\Cat{}{\kappa}$ spaces; that is, we assume a geodesic-join property that follows from completeness rather than completeness itself, imposing the latter when needed. %The effectiveness of this approach is largely due to the following property of $\Cat{}{\kappa}$ spaces:
+%S: This remark seems to be for me, but not for the reader, we will talk about this ``effectiveness'' again :) 
+
+We have the following basic facts (see [1]):
+
+\begin{thm}{Lemma}\label{lem:cat-unique} 
+In a $\Cat{}{\kappa}$ space, geodesics of length $<\varpi\kappa$ are uniquely determined by, and continuously dependent on, their endpoint pairs.\end{thm}
+
+\begin{thm}{Lemma}\label{lem:convex-balls}
+In a $\Cat{}{\kappa}$ space, any open ball  $\oBall(x,R)$ of radius $R\le\varpi\kappa/2$  is convex, that is, $\oBall(x,R)$ contains every geodesic whose endpoints it contains.
+\end{thm}
+
+We also use an equivalent definition of $\Cat{}{\kappa}$ spaces (see \cite{AKP}).
+Namely, a metric space  $\spc{U}$ in which any  two points at distance $<\varpi\kappa$ are  joined by a geodesic is a $\Cat{}{\kappa}$ space if and only if it satisfies the following condition: 
+\begin{enumerate}
+
+\item (point-on-side comparison)\label{cat-monoton}
+for any geodesic $[x y]$ and $z\in \l]x y\r[$, we have
+$$\angk\kappa x p y\ge\angk\kappa x p z,$$
+or equivalently, 
+$$\dist{\~p}{\~z}{}\ge \dist{p}{z}{}, \eqlbl{POS-CAT}$$
+where $\trig{\~p}{\~x}{\~y}=\modtrig\kappa(p x y)$, $\~z\in\l] \~x\~y\r[$, $\dist{\~x}{\~z}{}=\dist{x}{z}{}$.
+
+
+%\item (hinge comparison)\label{cat-hinge}
+%for any hinge $\hinge x p y$, the angle 
+%$\mangle\hinge x p y$ exists and
+%$$\mangle\hinge x p y\le\angk\kappa x p y.$$
+
+\end{enumerate}
+
+We also use Reshetnyak's majorization theorem \cite{reshetnyak:major}.  
+Suppose $\~\alpha$ is a simple closed curve of finite length  in $\Lob2{\kappa}$,
+and $D\subset\Lob2{\kappa}$ is a closed region bounded by $\~\alpha$. If $\spc{X}$ is a metric space,  a length-nonincreasing map $F\:D\to\spc{X}$ is called \emph{majorizing} if it is length-preserving on $\~\alpha$.
+In this case, we say that $D$ \emph{majorizes} the curve $\alpha=F\circ\~\alpha$ under the map $F$.
+
+
+\begin{thm}{Reshetnyak's majorization theorem}
+\label{thm:major}
+Any closed curve $\alpha$ of length $<2\cdot \varpi\kappa$ in $\spc{U}\in\Cat{}{\kappa}$ is majorized by a convex region in $\Lob2\kappa$.
+\end{thm}
+
+
+\parbf{Ultralimit of metric spaces.}
+Given a metric space $\spc{X}$, its ultrapower 
+(i.e. ultralimit of constant sequence $\spc{X}_n=\spc{X}$) will be denoted as $\spc{X}^\o$;
+here $\o$ denotes a fixed nonprinciple ultrafilter.
+For definitions and properties of ultrapowers, 
+we refer to a paper of Kleiner and Leeb \cite[2.4]{kleiner-leeb}.
+
+We use the following facts about ultrapowers which easily follow from the definitions (see \cite{AKP} for details):
+\begin{itemize}
+\item $\spc{X}\in\cCat{}{\kappa}\  \Longleftrightarrow\  \spc{X}^\o\in\cCat{}{\kappa}$.
+\item $\spc{X}\in\CBB{}{\kappa}\  \Longleftrightarrow\  \spc{X}^\o\in\CBB{}{\kappa}$.
+\item $\spc{X}$ is intrinsic if and only if $\spc{X}^\o$ is geodesic.
+\end{itemize}
+
+
+Note that if $\spc{X}$ is \textit{proper} (namely, bounded closed sets are compact), then $\spc{X}$ and $\spc{X}^\o$ coincide.
+Thus a reader interested only in proper spaces may ignore everything related to ultrapower in this article.
+
+\input{kirszbraun.tex}
+\appendix
+\def\claim#1{%
+\par%
+\medskip%
+\noindent%
+\refstepcounter{thm}%
+\hbox{\bf\boldmath \Alph{section}.\arabic{thm}. #1.}
+\it\ %\ignorespaces
+}
+\input{baricentric-simplex.tex}
+\input{helly.tex}
+\input{bibl-gokova.tex}
+\end{document}

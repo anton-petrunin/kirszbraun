@@ -1,0 +1,248 @@
+\section{Barycentric simplex}\label{sec:baricentric}
+
+The barycentric simplex was introduced by Kleiner in \cite{kleiner};
+it is a construction that works in a general metric space.
+Roughly, it gives a $\kay$-\nospace dimensional submanifold for a given ``nondegenerate'' array of $\kay+1$ strongly convex functions.
+
+Let us denote by $\Delta^\kay\subset \RR^{\kay+1}$\index{$\Delta^m$} 
+the \emph{standard $\kay$-simplex}\index{standard simplex}; 
+i.e. $\bm{x}=(x_0,x_1,\dots,x_n)\in\Delta^\kay$ if $\sum_{i=0}^\kay x_i=1$ and $x_i\ge0$ for all $i$.
+
+Let $\spc{X}$ be a metric space 
+and $\bm{f}=(f^0,f^1,\dots,f^\kay)\:\spc{X}\to \RR^{\kay+1}$ be a function array.
+Consider the map $\spx{\bm{f}}\:\Delta^\kay\to \spc{X}$,\index{$\spx{\bm{f}}$} defined by 
+$$\spx{\bm{f}}(\bm{x})=\argmin\sum_{i=0}^\kay x_i\cdot f^i,$$
+where $\argmin f$\index{$\argmin$} denotes a point of minimum of $f$.
+The map $\spx{\bm{f}}$ will be called a \emph{barycentric simplex}\index{barycentric simplex of function array} of $\bm{f}$.
+In general, a barycentric simplex of a function array might be undefined and need not be unique. 
+
+The name comes from the fact that if $\spc{X}$ is a Euclidean space 
+and $f^i(x)\z=\tfrac{1}{2}\cdot\dist[2]{p^i}{x}{}$ for some array of points $\bm{p}=(p^0,p^1,\dots,p^\kay)$, 
+then $\spx{\bm{f}}(\bm{x})$ is the barycenter of points $p^i$ with weights $x_i$.
+ 
+A barycentric simplex $\spx{\bm{f}}$ 
+for the function array $f^i(x)=\tfrac{1}{2}\cdot\dist[2]{p^i}{x}{}$
+will also be called a \emph{barycentric simplex with vertices at} $\{p^i\}$\index{barycentric simplex with vertices at point array}.
+
+It is clear from the  definition that if 
+$\bm{\hat f}$ is a subarray of $\bm{f}$,
+then $\spx{\bm{\hat f}}$ coincides with the restriction of $\spx{\bm{f}}$ to the corresponding face of $\Delta^\kay$.
+
+The following theorem shows that the barycentric simplex is defined 
+for an array of strongly convex functions on a complete geodesic space. 
+In order to formulate the theorem, we need to introduce a partial order $\succcurlyeq$ on $\RR^{\kay+1}$.
+
+\begin{thm}{Definition}\label{def:supset+succcurlyeq}
+For two real arrays $\bm{v}$, $\bm{w}\in \RR^{\kay+1}$,
+$\bm{v}=(v^0,v^1,\dots,v^\kay)$ 
+and 
+$\bm{w}=(w^0,w^1,\dots,w^\kay)$, 
+we write
+$\bm{v}\succcurlyeq\bm{w}$ if $v^i\ge w^i$ for each $i$.
+
+Given a subset $Q\subset \RR^{\kay+1}$, define its \emph{superset}\index{superset}
+\index{$\SupSet$}
+$$\SupSet Q =\{\bm{v}\in\RR^\kay\mid\exists\, \bm{w}\in Q\ \t{such that}\ \bm{v}\succcurlyeq\bm{w}\}.$$
+
+\end{thm}
+
+
+\begin{thm}{Theorem on barycentric simplex}\label{thm:bary}
+Assume $\spc{X}$ is a complete geodesic space and 
+$\bm{f}\z=(f^0,f^1,\dots,f^\kay)\:\spc{X}\to\RR^\kay$ is an array of strongly convex and locally Lipschitz functions.
+
+Then the barycentric simplex $\spx{\bm{f}}\:\Delta^\kay\to \spc{X}$
+is uniquely defined and moreover:
+
+\begin{subthm}{bary-Lip} $\spx{\bm{f}}$ is Lipschitz. 
+\end{subthm}
+
+\begin{subthm}{bary-iff} The set $\SupSet{\bm{f}(\spc{X})}\subset\RR^{\kay+1}$ is convex,
+and
+$p\in \spx{\bm{f}}(\Delta^\kay)$ if and only if
+$\bm{f}(p)\in\Fr\l[\SupSet{\bm{f}(\spc{X})}\r]$.
+In particular, $\bm{f}\circ\spx{\bm{f}}(\Delta^\kay)$ lies on a convex hypersurface in $\RR^{\kay+1}$.
+\end{subthm}
+
+\begin{subthm}{bary-embed} The restriction $\bm{f}|_{\spx{\bm{f}}(\Delta^\kay)}$  has  $C^{\frac{1}{2}}$-inverse.
+\end{subthm}
+
+\begin{subthm}{bary-R^n} 
+The set $\mathfrak{S}=\spx{\bm{f}}(\Delta^\kay)\backslash\spx{\bm{f}}(\partial\Delta^\kay)$
+is $C^{\frac{1}{2}}$-homeomorphic to an open domain in $\RR^\kay$.
+\end{subthm}
+\end{thm}
+
+The set $\mathfrak{S}$ described above will be called \emph{Kleiner's spine}\index{Kleiner's spine} of $\bm{f}$.
+If $\mathfrak{S}$ is nonempty, we say the barycentric simplex $\spx{\bm{f}}$ is \emph{nondegenerate}\index{nondegenerate}.
+
+We precede the proof of the theorem with the following lemma.
+
+\begin{thm}{Lemma}\label{lem:argmin(convex)}
+Assume $\spc{X}$ is a complete geodesic metric space and let  $f\:\spc{X}\to\RR$ be a locally Lipschitz, strongly convex function.  Then the minimum point 
+$p=\argmin f$ 
+is uniquely defined.
+\end{thm}
+
+\parit{Proof.}
+Assume that $x$ and $y$ are distinct minimum points of $f$. 
+Then for the midpoint $z$ of a geodesic $[x y]$ we have
+$$f(z)<f(x)=f(y),$$ 
+a contradiction. 
+It only remains to show existence.
+
+Fix a point $p\in  \spc{X}$; 
+let $\Lip\in\RR$ be a Lipschitz constant of $f$ in a neighborhood of $p$.
+Without loss of generality, we can assume that $f$ is $1$-convex.
+Consider function $\phi(t)=f\circ\geod_{[px]}(t)$.
+Clearly $\phi$ is $1$-convex and $\phi^+(0)\ge -\Lip$.
+Setting $\ell=\dist{p}{x}{}$, we get 
+\begin{align*}
+f(x)
+&=
+\phi(\ell)
+\ge
+\\
+&\ge
+f(p)-\Lip\cdot\ell+\tfrac{1}{2}\cdot\ell^2
+\ge
+\\
+&\ge f(p)-\tfrac{1}{2}\cdot{\Lip^2}.
+\end{align*}
+
+In particular,
+$$s
+\df
+\inf\set{f(x)}{x\in \spc{X}}
+\ge
+f(p)-\tfrac{1}{2}\cdot{\Lip^2}.$$
+If $z$ is a midpoint of $[x y]$ then  
+$$s\le f(z)
+\le
+\tfrac{1}{2}\cdot f(x)+\tfrac{1}{2}\cdot f(y)-\tfrac{1}{8}\cdot\dist[2]{x}{y}{}.
+\eqlbl{mid-point}$$
+Choose a sequence of points $p_n\in \spc{X}$  such that $f(p_n)\to s$.
+Applying \ref{mid-point}, for $x\z=p_n$, $y\z=p_m$, we get that $(p_n)$ is a Cauchy sequence. 
+Clearly, $p_n\to \argmin f$.
+\qeds
+
+
+ 
+
+\parit{Proof of theorem \ref{thm:bary}.}
+Without loss of generality, we can assume that each $f^i$ is $1$-convex.
+Thus, for any $\bm{x}\in\Delta^\kay$, 
+the convex combination $\sum x_i\cdot f^i\:\spc{X}\to\RR$ is also $1$-convex.
+Therefore, according to Lemma~\ref{lem:argmin(convex)}, $\spx{\bm{f}}(\bm{x})$ is defined.
+
+
+
+\parit{(\ref{SHORT.bary-Lip}).} 
+Since $\Delta^\kay$ is compact, it is sufficient to show that $\spx{\bm{f}}$ is locally Lipschitz.
+
+For $\bm{x},\bm{y}\in\Delta^\kay$,
+set 
+\begin{align*}
+f_{\bm{x}}
+&=\sum x_i\cdot f^i,
+&
+f_{\bm{y}}
+&=\sum y_i\cdot f^i,
+\\
+p
+&=\spx{\bm{f}}(\bm{x}),
+&
+q
+&=\spx{\bm{f}}(\bm{y}).
+\end{align*}
+Let $\ell=\dist[2]{p}{q}{}$.
+Clearly 
+$\phi(t)=f_{\bm{x}}\circ\geod_{[p q]}(t)$ takes its minimum at $0$ and
+$\psi(t)=f_{\bm{y}}\circ\geod_{[p q]}(t)$ takes its minimum at $\ell$.
+Thus $\phi^+(0)$, $\psi^-(\ell)\ge 0$%
+\footnote{Here $\phi^\pm$ denotes ``signed one sided derivative''; i.e. 
+$$\phi^\pm(t_0)=\lim_{t\to t_0\pm}\frac{\phi(t)-\phi(t_0)}{|t-t_0|}$$}%
+.
+From $1$-convexity of $f_{\bm{y}}$, we have
+$\psi^+(0)+\psi^-(\ell)+\ell\le0$.
+
+Let $\Lip$ be a Lipschitz constant for all $f^i$ in a neighborhood $\Omega\ni p$.
+Then $\psi^+(0)\le \phi^+(0)+\Lip\cdot\|\bm{x}-\bm{y}\|_{{}_1}$, 
+where $\|\bm{x}-\bm{y}\|_{{}_1}=\sum_{i=0}^\kay|x_i-y_i|$.
+That is, given $\bm{x}\in\Delta^\kay$, there is a constant $\Lip$ such that
+$$\dist{\spx{\bm{f}}(\bm{x})}{\spx{\bm{f}}(\bm{y})}{}=\ell\le \Lip\cdot\|\bm{x}-\bm{y}\|_{{}_1}$$
+for any $\bm{y}\in\Delta^\kay$.
+In particular, there is $\eps>0$ such that if $\|\bm{x}-\bm{y}\|_{{}_1},$ $\|\bm{x}-\bm{z}\|_{{}_1} <\eps$, then $\spx{\bm{f}}(\bm{y})$, $\spx{\bm{f}}(\bm{z})\in\Omega$. 
+Thus, the same argument as above implies 
+$$\dist{\spx{\bm{f}}(\bm{y})}{\spx{\bm{f}}(\bm{z})}{}
+=
+\ell\le \Lip\cdot\|\bm{y}-\bm{z}\|_{{}_1}$$
+for any $\bm{y}$ and $\bm{z}$ sufficiently close to $\bm{x}$;
+i.e. $\spx{\bm{f}}$ is locally Lipschitz.
+
+\parit{(\ref{SHORT.bary-iff}).} The ``only if'' part is trivial, let us prove  the ``if''-part.
+
+Note that convexity of $f^i$ implies that
+for any two points $p,q\in \spc{X}$ and $t\in[0,1]$ we have
+$$(1-t)\cdot\bm{f}(p)+t\cdot \bm{f}(q)
+\succcurlyeq
+\bm{f}\circ\geodpath_{[p q]}(t),
+\eqlbl{n-convex}$$
+where $\geodpath_{[p q]}$ is a geodesic path from $p$ to $q$; 
+i.e. $\geodpath_{[p q]}(t)=\geod_{[p q]}(\tfrac{t}{\dist{p}{q}{}})$. 
+
+From \ref{n-convex}, we have that $\SupSet[\bm{f}(\spc{X})]$ is a convex subset of $\RR^{\kay+1}$.
+If 
+$$\max_{i}\{f^i(q)\z-f^i(p)\}\ge0$$ 
+for any $q\in \spc{X}$, then $\bm{f}(p)$ lies in the boundary of $\SupSet[\bm{f}(\spc{X})]$.
+Take a supporting vector $\bm{x}\in\RR^{\kay+1}$ to $\SupSet[\bm{f}(\spc{X})]$ at $\bm{f}(p)$.
+Thus $\bm{x}\not=\bm{0}$ and $\sum_i x_i\cdot[w^i-f^i(p)]\ge0$ for any 
+$\bm{w}\in \SupSet[\bm{f}(\spc{X})]$. In particular, $\sum_i x_i\cdot v_i \ge 0$ for any $v=(v_1,\ldots, v_k)$ with all $v_i\ge 0$.  Hence $x_i\ge 0$ for all $i$ and 
+$\bm{x}'=\frac{\bm{x}}{\|\bm{x}\|}_{{}_1}\in\Delta^\kay$. 
+Thus $p=\spx{\bm{f}}(\bm{x}')$. 
+
+\parit{(\ref{SHORT.bary-embed}).}
+The restriction $\bm{f}|_{\spx{\bm{f}}(\Delta^\kay)}$ is Lipschitz.
+Thus we only have to show that it has a  $C^{\frac{1}{2}}$-inverse.
+Given $\bm{v}\in\RR^{\kay+1}$, consider the function 
+$h_{\bm{v}}\: \spc{X}\to \RR$ given by
+$$h_{\bm{v}}(p)=\max_{i}\{f^i(p)-v^i\}.$$
+Define a map $\map \:\RR^{\kay+1}\to \spc{X}$ by
+$\map (\bm{v})=\argmin h_{\bm{v}}$.
+
+Clearly $h_{\bm{v}}$ is $1$-convex.
+Thus, according to \ref{lem:argmin(convex)}, $\map (\bm{v})$ is uniquely defined for any $\bm{v}\in\RR^{\kay+1}$.
+From (\ref{SHORT.bary-iff}), for any $p\in \spx{\bm{f}}(\Delta^\kay)$ we have
+$\map \circ\bm{f}(p)=p$.
+
+It remains to show that $\map $ is $C^{\frac{1}{2}}$-continuous.
+Clearly, 
+$$|h_{\bm{v}}-h_{\bm{w}}|
+\le\|\bm{v}-\bm{w}\|_\subinfty
+\df
+\max_{i}\{|v^i-w^i|\},$$
+for any $\bm{v},\bm{w}\in\RR^{\kay+1}$.
+Set $p=\map (\bm{v})$ and $q=\map (\bm{w})$.
+Since $h_{\bm{v}}$ and $h_{\bm{w}}$ are 1-convex,
+\begin{align*}
+h_{\bm{v}}(q)
+&\ge 
+h_{\bm{v}}(p)+\tfrac{1}{2}\cdot\dist[2]{p}{q}{},
+&
+h_{\bm{w}}(p)
+&\ge 
+h_{\bm{w}}(q)+\tfrac{1}{2}\cdot\dist[2]{p}{q}{}.
+\end{align*}
+Therefore,
+$$\dist[2]{p}{q}{}\le 2\cdot\|\bm{v}-\bm{w}\|_\subinfty.$$
+Hence the result.
+
+
+\parit{(\ref{SHORT.bary-R^n}).} 
+Let $S=\Fr\SupSet(\bm{f}(\spc{X}))$.
+Note that orthogonal projection to the hyperplane $\WW^\kay$ in $\RR^{\kay+1}$ defined by equation $x_0+x_1+\dots+x_n=0$ gives a bi-Lipschits homeomorphism $S\to \WW^\kay$.
+
+Clearly, $\bm{f}({\spx{\bm{f}}(\Delta^\kay)}\backslash\spx{\bm{f}}(\partial\Delta^\kay))$ 
+is an open subset of $S$.
+Hence the result.
+\qeds
