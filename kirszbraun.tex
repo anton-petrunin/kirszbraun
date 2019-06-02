@@ -945,7 +945,7 @@ in a ball in a generic Hadamard space.
 
 The (2$n$+2)-point comparison (\ref{CBA-n-point}) gives a necessary condition for \ref{open:n-point-CBA} 
 which is not sufficient.
-One can see this in the following example constructed by Nina Lebedava:
+One can see this in the following example constructed by Nina Lebedeva:
 
 Consider a square $[\~x^1\~y^1\~x^2\~y^2]$ in $\EE^3$
 with  two more points  $\~z^1$, $\~z^2$ in general position on opposite sides of the plane spanned by $[\~x^1\~y^1\~x^2\~y^2]$ so that the convex hull of $\~x^1,\~x^2,\~y^1,\~y^2,\~z^1,\~z^2$ forms a nonregular octahedron with the faces formed by triangles $[\~x^i \~y^j \~z^\kay]$.
@@ -961,11 +961,17 @@ Let \[\~w\in  \Conv(\~x^1,\~y^1,\~x^2,\~y^2)_{\EE^3}\]
 and $w$ be the corresponding point in $\Conv(x^1,y^1,x^2,y^2)_{\spc{U}}$.
 By 
 point-on-side comparison (\ref{cat-monoton}) we have $\dist{z^i}{w}{\spc{U}}\le \dist{\~z^i}{\~w}{\EE^3}$.
+By construction, we may choose $\~w$ so that \[\dist{\~z^1}{\~z^2}{\EE^3}=\dist{\~z^1}{\~w}{\EE^3}+\dist{\~w}{\~z^2}{\EE^3}.\]
 It follows that 
-\[\dist{z^1}{z^2}{\spc{U}}
-\le
-\dist{\~z^1}{\~z^2}{\EE^3},\] 
-a contradiction.%???
+\begin{align*}
+\dist{z^1}{z^2}{\spc{U}}
+&\le\dist{z^1}{w}{\spc{U}}+\dist{w}{z^2}{\spc{U}}\le
+\\
+&\le\dist{\~z^1}{\~w}{\EE^3}+\dist{\~w}{\~z^2}{\EE^3}=
+\\
+&=\dist{\~z^1}{\~z^2}{\EE^3},
+\end{align*}
+a contradiction.
 
 The next conjecture (if true) would give the  right generality for  Kirszbraun's theorem (\ref{thm:kirsz+}).
 Roughly it states that the example \ref{example:SS_+}
