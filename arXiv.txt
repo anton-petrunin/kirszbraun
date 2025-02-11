@@ -1,0 +1,16 @@
+akp1.sty
+baricentric-simplex.tex
+bibl-gokova.tex
+envmnt.sty
+helly.tex
+hyper.sty
+hyphenation.sty
+kirszbraun.tex
+kiszbraun-gokova.tex
+letters.sty
+notation.sty
+pics/4-pnt-kirsz-x2.pdf
+pics/chain.pdf
+pics/contr-no-overlap.pdf
+pics/ivanov-example.pdf
+pics/k_0.pdf
